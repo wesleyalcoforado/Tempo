@@ -4,9 +4,9 @@
 
 // Saves options to localStorage.
 function save_options() {
-  var city = document.getElementById("city");
-  localStorage["city"] = city.value;
-
+  var city = document.getElementById("city").value;
+  localStorage.city = city;
+  
   chrome.extension.sendRequest({}, function(response) {});  
   
   // Update status to let user know options were saved.
@@ -17,24 +17,17 @@ function save_options() {
   }, 750);
 }
 
-// Restores select box state to saved value from localStorage.
 function restore_options() {
-  var city = localStorage["city"];
-  if (!city) {
-    return;
-  }
-  var txtCity = document.getElementById("city");
-  txtCity.value = city;
+  var city = localStorage.city;
+  document.getElementById("city").value = city;
 }
 
 </script>
 
 <body onload="restore_options()">
 
-Cidade:
-<input type="text" id="city">
+Cidade: <input type="text" id="city"> <br/>
 
-<br>
 <button onclick="save_options()">Salvar</button>
 
 <br/><br/>

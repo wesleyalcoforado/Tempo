@@ -3,7 +3,8 @@
   "version": "1.0",
   "description": "Consulta o clima da cidade desejada no Google",
   "permissions": [
-    "http://www.google.com/*"
+    "http://www.google.com/*",
+	"geolocation"
   ],
   "icons": {
   	"16":  "tempo16.png",
