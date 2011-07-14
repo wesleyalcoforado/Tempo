@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <script>    
+      function updateWeather(){
+      	var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function(data) {
+          if (xhr.readyState == 4) {
+            if (xhr.status == 200) {
+              var data = xhr.responseXML;
+              parseWeather(data);
+            } else {
+              parseWeather(null);
+            }
+          }
+        }  
+        
+        var url = 'http://www.google.com/ig/api?weather=sorocaba,sp&hl=pt-br';
+        xhr.open('GET', url, true);
+        xhr.send();            	
+      }
+      
+      function parseWeather(data){
+      	if(data != null){
+      	  var temp = data.getElementsByTagName('current_conditions')[0].getElementsByTagName('temp_c')[0].getAttribute('data');
+      	  chrome.browserAction.setBadgeText({text:temp + 'ºC'});
+        }else{
+      	  chrome.browserAction.setBadgeText({text:'?'});
+       	}
+      }
+      
+      updateWeather();
+      window.setInterval(updateWeather, 60000);
+    </script>
+  </body>
+</html>

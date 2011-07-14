@@ -1,0 +1,17 @@
+{
+  "name": "Tempo",
+  "version": "1.0",
+  "description": "Consulta o clima da cidade desejada no Google",
+  "permissions": [
+    "http://www.google.com/*"
+  ],
+  "icons": {
+  	"16":  "tempo16.png",
+  	"48":  "tempo48.png",
+  	"128":  "tempo128.png"  	
+  },
+  "browser_action": {
+    "default_icon": "tempo16.png"
+  },
+  "background_page" : "background.html"
+}
