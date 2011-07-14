@@ -1,0 +1,44 @@
+<html>
+<head><title>Tempo</title></head>
+<script type="text/javascript">
+
+// Saves options to localStorage.
+function save_options() {
+  var city = document.getElementById("city");
+  localStorage["city"] = city.value;
+
+  chrome.extension.sendRequest({}, function(response) {});  
+  
+  // Update status to let user know options were saved.
+  var status = document.getElementById("status");
+  status.innerHTML = "Opções salvas com sucesso.";
+  setTimeout(function() {
+    status.innerHTML = "";
+  }, 750);
+}
+
+// Restores select box state to saved value from localStorage.
+function restore_options() {
+  var city = localStorage["city"];
+  if (!city) {
+    return;
+  }
+  var txtCity = document.getElementById("city");
+  txtCity.value = city;
+}
+
+</script>
+
+<body onload="restore_options()">
+
+Cidade:
+<input type="text" id="city">
+
+<br>
+<button onclick="save_options()">Salvar</button>
+
+<br/><br/>
+<span id="status"></span>
+
+</body>
+</html>

@@ -17,7 +17,7 @@
           }
         }  
         
-        var url = 'http://www.google.com/ig/api?weather=sorocaba,sp&hl=pt-br';
+        var url = 'http://www.google.com/ig/api?weather=' + localStorage.city + '&hl=pt-br';
         xhr.open('GET', url, true);
         xhr.send();            	
       }
@@ -33,6 +33,12 @@
       
       updateWeather();
       window.setInterval(updateWeather, 60000);
+	  
+	  function onRequest(request, sender, sendResponse) {
+		updateWeather();
+	  }
+	  
+	  chrome.extension.onRequest.addListener(onRequest);
     </script>
   </body>
 </html>
