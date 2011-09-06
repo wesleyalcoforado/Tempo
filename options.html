@@ -1,37 +1,132 @@
 <html>
-<head><title>Tempo</title></head>
+<head>
+<title>Tempo</title>
+<style>
+    * {
+        font-family: Verdana, Geneva, sans-serif;
+        font-size: 12px;
+    }
+
+    h1 {
+        font-size: 20px;
+        text-align: center;
+        color: #666666;
+    }
+
+    fieldset {
+        width: 200px;
+        margin: 0 auto;
+        border: 1px solid #CCC;
+        border-radius: 10px;
+    }
+    
+    #city {
+        width: 200px;
+    }
+
+    button {
+        margin-top: 20px;
+        border: 1px solid #c0c0c0;
+        padding: 5px;
+        border-radius: 10px;
+    }
+
+    #status {
+        margin: 0 auto;
+        width: 180px;
+        background-color: #8ab700;
+        padding: 20px;
+        opacity: 0;
+        display: block;
+        border-radius: 10px;
+    }
+</style>
+</head>
 <script type="text/javascript">
 
-// Saves options to localStorage.
-function save_options() {
-  var city = document.getElementById("city").value;
-  localStorage.city = city;
-  
-  chrome.extension.sendRequest({}, function(response) {});  
-  
-  // Update status to let user know options were saved.
-  var status = document.getElementById("status");
-  status.innerHTML = "Opções salvas com sucesso.";
-  setTimeout(function() {
-    status.innerHTML = "";
-  }, 750);
-}
+    // Saves options to localStorage.
+    function save_options() {
+        var city = document.getElementById("city").value;
+        localStorage.city = city;
 
-function restore_options() {
-  var city = localStorage.city;
-  document.getElementById("city").value = city;
-}
+        var unit = 'C';
+        if(document.getElementById("unit_f").checked){
+            unit = 'F';
+        }
+        localStorage.unit = unit;
+
+        chrome.extension.sendRequest({}, function(response) {});  
+
+        // Update status to let user know options were saved.
+        setAlpha('status', 100);
+        fadeOut('status', 1.5);
+    }
+
+    function fadeOut(id, time) {
+        alpha = 100;
+        timer = (time*1000)/50;
+        var i = setInterval(
+            function() {
+            if (alpha <= 0)
+                clearInterval(i);
+            setAlpha(id, alpha);
+            alpha -= 2;
+        }, timer);
+    }
+
+    function setAlpha(id, alpha) {
+        //target.style.filter = "alpha(opacity="+ alpha +")";
+        var target = document.getElementById(id);
+        target.style.opacity = alpha/100;
+    }
+
+    function restore_options() {
+        applyI18n();
+        
+        var city = localStorage.city;
+        var unit = localStorage.unit;
+    
+        if(city != undefined){
+            document.getElementById("city").value = city;
+        }
+
+        if(unit == undefined){
+            unit = localStorage.unit = 'C';
+        }
+
+        if(unit == 'C'){
+            document.getElementById("unit_c").checked = true;
+        }else{
+            document.getElementById("unit_f").checked = true;
+        }
+    }
+
+    function applyI18n(){
+        var city = chrome.i18n.getMessage("city");
+        document.getElementById('lbl_city').innerText = city;
+
+        var save = chrome.i18n.getMessage("save");
+        document.getElementById('save_button').innerText = save;
+
+        var status = chrome.i18n.getMessage("options_successfully_saved");
+        document.getElementById('status').innerText = status;
+    }
 
 </script>
 
 <body onload="restore_options()">
 
-Cidade: <input type="text" id="city"> <br/>
+<h1>Tempo</h1>
 
-<button onclick="save_options()">Salvar</button>
+<fieldset>
+<label class="lbl_city" for="city"><span id="lbl_city">Ciudad</span>: </label> <input type="text" id="city" name="city"> <br/>
+<label><input type="radio" id="unit_c" name="unit"> Celsius</label> &nbsp; <label><input type="radio" id="unit_f" name="unit"> Farenheit</label><br/>
 
-<br/><br/>
-<span id="status"></span>
+<div align="right"><button onclick="save_options()" id="save_button">Guardar</button></div>
+</fieldset>
+
+<br/>
+<span id="status">Opciones salvas con sucesso</span>
 
 </body>
 </html>

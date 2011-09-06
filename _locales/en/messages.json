@@ -1,0 +1,14 @@
+{
+	"city": {
+		"message": "City",
+		"description": "City label"
+	},
+	"save": {
+		"message": "Save",
+		"description": "Text on save button"
+	},
+	"options_successfully_saved": {
+		"message": "Options successfully saved.",
+		"description": "Message that appears after clicking on save button"
+	}
+}

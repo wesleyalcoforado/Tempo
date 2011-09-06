@@ -1,7 +1,7 @@
 {
   "name": "Tempo",
   "version": "1.0",
-  "description": "Consulta o clima da cidade desejada no Google",
+  "description": "Shows the weather of your selected city.",
   "permissions": [
     "http://www.google.com/*",
 	"geolocation"
@@ -15,5 +15,6 @@
     "default_icon": "tempo16.png"
   },
   "background_page" : "background.html",
-  "options_page": "options.html"
+  "options_page": "options.html",
+  "default_locale": "en"
 }
