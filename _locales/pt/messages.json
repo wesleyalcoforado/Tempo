@@ -1,0 +1,26 @@
+﻿{
+	"opcioj": {
+		"message": "Opções",
+		"description": "Aba Opções"
+	},
+	"pri": {
+		"message": "Sobre",
+		"description": "Aba Sobre"
+	},
+	"konservi": {
+		"message": "Salvar",
+		"description": "Título do botão salvar"
+	},
+	"urbo": {
+		"message": "Cidade",
+		"description": "Label para cidade"
+	},
+  "unuo": {
+    "message": "Unidade",
+    "description": "Label para unidade"
+  },
+  "mesagho_sukceso": {
+    "message": "Suas alterações foram salvas com sucesso!",
+    "description": "Mensagem de sucesso após salvar as opções."
+  }
+}

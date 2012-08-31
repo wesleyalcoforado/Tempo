@@ -1,0 +1,20 @@
+﻿{
+	"opcioj": {
+		"message": "Options"
+	},
+	"pri": {
+		"message": "À propos"
+	},
+	"konservi": {
+		"message": "Enregistrer"
+	},
+	"urbo": {
+		"message": "Ville"
+	},
+  "unuo": {
+    "message": "Unité"
+  },
+  "mesagho_sukceso": {
+    "message": "Vos modifications ont bien été enregistrées!"
+  }
+}

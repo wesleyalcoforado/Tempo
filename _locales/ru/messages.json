@@ -1,0 +1,20 @@
+﻿{
+	"opcioj": {
+		"message": "Опции"
+	},
+	"pri": {
+		"message": "О"
+	},
+	"konservi": {
+		"message": "Сохранить"
+	},
+	"urbo": {
+		"message": "Город"
+	},
+  "unuo": {
+    "message": "Единица измерения"
+  },
+  "mesagho_sukceso": {
+    "message": "Ваши настройки были успешно сохранены!"
+  }
+}

@@ -1,132 +1,81 @@
+<!--
+This file is part of Tempo.
+
+Kromia Vortaro is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Kromia Vortaro is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Kromia Vortaro.  If not, see <http://www.gnu.org/licenses/>.
+
+Tempo is Copyright (c) 2011 Wesley Alcoforado
+-->
 <html>
 <head>
-<title>Tempo</title>
-<style>
-    * {
-        font-family: Verdana, Geneva, sans-serif;
-        font-size: 12px;
-    }
-
-    h1 {
-        font-size: 20px;
-        text-align: center;
-        color: #666666;
-    }
-
-    fieldset {
-        width: 200px;
-        margin: 0 auto;
-        border: 1px solid #CCC;
-        border-radius: 10px;
-    }
-    
-    #city {
-        width: 200px;
-    }
-
-    button {
-        margin-top: 20px;
-        border: 1px solid #c0c0c0;
-        padding: 5px;
-        border-radius: 10px;
-    }
-
-    #status {
-        margin: 0 auto;
-        width: 180px;
-        background-color: #8ab700;
-        padding: 20px;
-        opacity: 0;
-        display: block;
-        border-radius: 10px;
-    }
-</style>
+  <meta charset='utf-8'>
+  <title>Tempo</title>
+  <link href="opcioj.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="moduloj/jquery.min.js"></script>
+  <script type="text/javascript" src="moduloj/opcioj.js"></script>
 </head>
-<script type="text/javascript">
+<body>
+  <div id="navbar-container" style="left: 0px; ">
+    <h1 id="navbar-content-title">Tempo</h1>
+    <ul id="navbar">
+      <li id="opciojNav" class="navbar-item navbar-item-selected" i18n-content="opcioj">Opções</li>
+      <li id="priNav" class="navbar-item" i18n-content="pri">Sobre</li>
+    </ul>
+  </div>
 
-    // Saves options to localStorage.
-    function save_options() {
-        var city = document.getElementById("city").value;
-        localStorage.city = city;
+  <div id="mainview">
+    <div id="opciojPagxo" class="kasxita montrita">
+      <h1 i18n-content="opcioj">Opções</h1>
+      <p>
+        <label for="urbo" i18n-content="urbo">Cidade</label>
+        <input type="text" id="urbo" name="urbo" />
+      </p>
+      <p>
+        <label i18n-content="unuo">Unidade</label>
+        <input type="radio" name="unuo" id="unuo_celsius" value="c"><label for="unuo_celsius">Celsius</label>
+        <input type="radio" name="unuo" id="unuo_fahrenheit" value="f"><label for="unuo_fahrenheit">Fahrenheit</label>
+      </p>
+      <button id="konservi" i18n-content="konservi">Salvar</button>
+      <p id="msg" i18n-content="mesagho_sukceso">Suas alterações foram salvas com sucesso!</p>
+    </div>
 
-        var unit = 'C';
-        if(document.getElementById("unit_f").checked){
-            unit = 'F';
-        }
-        localStorage.unit = unit;
+    <div id="priPagxo" class="kasxita">
+      <h1 i18n-content="pri">Sobre</h1>
+      <pre>
+This program  is free software; you  Ci tiu  verko estas libera programo;
+can  redistribute it  and/or modify  vi  povas  gin  pludistribui  kaj/au
+it  under  the  terms  of  the  GNU  modifi  je la  kondicoj  de la  GNUa
+General Public License as published  Generala Publika Permesilo, eldonita
+by  the  Free Software  Foundation;  de  «Free Software  Foundation», lau
+either version 3 of the License, or  la versio 3  de tiu Permesilo au, se
+(at your option) any later version.  vi preferas, ajna posta versio.
 
-        chrome.extension.sendRequest({}, function(response) {});  
+This program  is distributed in the  Ni  distribuas   ci  tiun  programon
+hope  that it  will be  useful, but  esperante  ke gi estos  utila, tamen
+WITHOUT ANY  WARRANTY; without even  SEN  IA AJN  GARANTIO,  i.a. sen  la
+the     implied     warranty     of  implica garantio pri SURMERKATIGEBLO
+MERCHANTABILITY  or  FITNESS FOR  A  au  TAUGECO  POR  IU KONKRETA  CELO.
+PARTICULAR  PURPOSE.   See the  GNU  Pliajn  detalojn  vidu  en  la  GNUa
+General  Public  License  for  more  Generala Publika Permesilo.
+details.
 
-        // Update status to let user know options were saved.
-        setAlpha('status', 100);
-        fadeOut('status', 1.5);
-    }
+<a href="http://www.gnu.org/licenses/gpl-3.0.txt">http://www.gnu.org/licenses/gpl-3.0.txt<a>
 
-    function fadeOut(id, time) {
-        alpha = 100;
-        timer = (time*1000)/50;
-        var i = setInterval(
-            function() {
-            if (alpha <= 0)
-                clearInterval(i);
-            setAlpha(id, alpha);
-            alpha -= 2;
-        }, timer);
-    }
-
-    function setAlpha(id, alpha) {
-        //target.style.filter = "alpha(opacity="+ alpha +")";
-        var target = document.getElementById(id);
-        target.style.opacity = alpha/100;
-    }
-
-    function restore_options() {
-        applyI18n();
-        
-        var city = localStorage.city;
-        var unit = localStorage.unit;
-    
-        if(city != undefined){
-            document.getElementById("city").value = city;
-        }
-
-        if(unit == undefined){
-            unit = localStorage.unit = 'C';
-        }
-
-        if(unit == 'C'){
-            document.getElementById("unit_c").checked = true;
-        }else{
-            document.getElementById("unit_f").checked = true;
-        }
-    }
-
-    function applyI18n(){
-        var city = chrome.i18n.getMessage("city");
-        document.getElementById('lbl_city').innerText = city;
-
-        var save = chrome.i18n.getMessage("save");
-        document.getElementById('save_button').innerText = save;
-
-        var status = chrome.i18n.getMessage("options_successfully_saved");
-        document.getElementById('status').innerText = status;
-    }
-
-</script>
-
-<body onload="restore_options()">
-
-<h1>Tempo</h1>
-
-<fieldset>
-<label class="lbl_city" for="city"><span id="lbl_city">Ciudad</span>: </label> <input type="text" id="city" name="city"> <br/>
-<label><input type="radio" id="unit_c" name="unit"> Celsius</label> &nbsp; <label><input type="radio" id="unit_f" name="unit"> Farenheit</label><br/>
-
-<div align="right"><button onclick="save_options()" id="save_button">Guardar</button></div>
-</fieldset>
-
-<br/>
-<span id="status">Opciones salvas con sucesso</span>
+Esperanta versio:
+<a href="http://www.esperanto.mv.ru/Cetero/gpl.html">http://www.esperanto.mv.ru/Cetero/gpl.html<a>
+      </pre>
+    </div>
+  </div>
 
 </body>
 </html>

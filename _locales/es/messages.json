@@ -1,14 +1,20 @@
-{
-	"city": {
-		"message": "Ciudad",
-		"description": "City label"
+﻿{
+	"opcioj": {
+		"message": "Opciones"
 	},
-	"save": {
-		"message": "Guardar",
-		"description": "Text on save button"
+	"pri": {
+		"message": "Sobre"
 	},
-	"options_successfully_saved": {
-		"message": "Opciones guardadas con éxito",
-		"description": "Message that appears after clicking on save button"
-	}
+	"konservi": {
+		"message": "Guardar"
+	},
+	"urbo": {
+		"message": "Ciudad"
+	},
+  "unuo": {
+    "message": "Unidad"
+  },
+  "mesagho_sukceso": {
+    "message": "Las configuraciones se han guardado con éxito!"
+  }
 }

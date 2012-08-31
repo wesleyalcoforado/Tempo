@@ -1,14 +1,26 @@
-{
-	"city": {
-		"message": "City",
-		"description": "City label"
+﻿{
+	"opcioj": {
+		"message": "Options",
+		"description": "Options tab"
 	},
-	"save": {
+	"pri": {
+		"message": "About",
+		"description": "About tab"
+	},
+	"konservi": {
 		"message": "Save",
-		"description": "Text on save button"
+		"description": "Caption for save button"
 	},
-	"options_successfully_saved": {
-		"message": "Options successfully saved.",
-		"description": "Message that appears after clicking on save button"
-	}
+	"urbo": {
+		"message": "City",
+		"description": "City's label"
+	},
+  "unuo": {
+    "message": "Unit",
+    "description": "Unit's label"
+  },
+  "mesagho_sukceso": {
+    "message": "Your settings were successfully saved!",
+    "description": "Success message after saving the user options."
+  }
 }
