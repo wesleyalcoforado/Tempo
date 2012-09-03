@@ -22,5 +22,9 @@
   "mesagho_sukceso": {
     "message": "Suas alterações foram salvas com sucesso!",
     "description": "Mensagem de sucesso após salvar as opções."
+  },
+  "bildoj": {
+    "message": "Ícones",
+    "description": "Ícones utilizados na aplicação"
   }
 }

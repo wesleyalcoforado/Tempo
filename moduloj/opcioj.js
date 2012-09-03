@@ -1,5 +1,9 @@
 function konservi() {
-  localStorage.urbo = $("#urbo").val();
+  if(localStorage.urbo != $("#urbo").val()) {
+    localStorage.urbo = $("#urbo").val();
+    localStorage.woeid = "";
+  }
+  
   localStorage.unuo = $("input[name=unuo]:checked").val();
   
   //devigas aktualigxon

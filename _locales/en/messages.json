@@ -22,5 +22,9 @@
   "mesagho_sukceso": {
     "message": "Your settings were successfully saved!",
     "description": "Success message after saving the user options."
+  },
+  "bildoj": {
+    "message": "Icons",
+    "description": "Icon sets used in the application"
   }
 }

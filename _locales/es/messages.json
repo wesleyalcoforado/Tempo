@@ -16,5 +16,8 @@
   },
   "mesagho_sukceso": {
     "message": "Las configuraciones se han guardado con éxito!"
+  },
+  "bildoj": {
+    "message": "Iconos"
   }
 }
