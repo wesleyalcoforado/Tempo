@@ -1,7 +1,8 @@
 function konservi() {
   if(localStorage.urbo != $("#urbo").val()) {
     localStorage.urbo = $("#urbo").val();
-    localStorage.woeid = "";
+    delete localStorage.lat;
+    delete localStorage.lon;
   }
   
   localStorage.unuo = $("input[name=unuo]:checked").val();
